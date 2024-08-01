@@ -1,0 +1,71 @@
+{
+    "name": "@ivanmaxlogiudice/gitignore",
+    "version": "0.0.1",
+    "packageManager": "bun@1.1.21",
+    "description": "Parse .gitignore files into an array of patterns.",
+    "type": "module",
+    "keywords": [
+        "gitignore",
+        "ignore",
+        "parse",
+        "eslint"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/ivanmaxlogiudice/gitignore",
+    "bugs": {
+        "url": "https://github.com/ivanmaxlogiudice/gitignore/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ivanmaxlogiudice/gitignore.git"
+    },
+    "author": "Iván Máximiliano, Lo Giudice (https://github.com/ivanmaxlogiudice/)",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "scripts": {
+        "build": "unbuild",
+        "lint": "eslint . --fix",
+        "release": "bumpp && npm publish && jsr publish --allow-slow-types",
+        "test": "bun test:types && bun test --coverage",
+        "test:types": "tsc --noEmit",
+        "prepublishOnly": "bun run build",
+        "prepare": "simple-git-hooks"
+    },
+    "peerDependencies": {
+        "typescript": "^5.5.4"
+    },
+    "peerDependenciesMeta": {
+        "typescript": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@ivanmaxlogiudice/eslint-config": "^2.0.2",
+        "@types/bun": "^1.1.6",
+        "@types/eslint": "^9.6.0",
+        "@types/node": "^22.0.2",
+        "bumpp": "^9.4.1",
+        "eslint": "^9.2.0",
+        "jsr": "^0.13.1",
+        "lint-staged": "^15.2.7",
+        "simple-git-hooks": "^2.11.1",
+        "typescript": "^5.5.4",
+        "unbuild": "^2.0.0"
+    },
+    "simple-git-hooks": {
+        "pre-commit": "bun lint-staged"
+    },
+    "lint-staged": {
+        "*": "eslint --fix"
+    }
+}
